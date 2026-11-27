@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy 7k Stea ❤️</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        font-family: "Poppins", sans-serif;
+
+        background: linear-gradient(
+          135deg,
+          #6a00ff 0%,
+          #b517ff 30%,
+          #ff4db8 70%,
+          #ff1744 100%
+        );
+      }
+
+      /* Background Glows */
+      body::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: #b517ff;
+        filter: blur(180px);
+        opacity: 0.5;
+        top: -100px;
+        left: -100px;
+      }
+
+      body::after {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: #ff1744;
+        filter: blur(180px);
+        opacity: 0.5;
+        bottom: -100px;
+        right: -100px;
+      }
+
+      .container {
+        position: relative;
+        text-align: center;
+        z-index: 10;
+      }
+
+      /* Happy 7k Stea */
+      .message {
+        font-size: 72px;
+        font-weight: 900;
+        margin-bottom: 15px;
+        letter-spacing: 2px;
+        color: white;
+
+        text-shadow:
+          0 0 10px #fff,
+          0 0 20px #ff4db8,
+          0 0 40px #b517ff,
+          0 0 60px #ff1744;
+
+        animation: titleGlow 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes titleGlow {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.04);
+        }
+      }
+
+      /* Click Me Text */
+      .click-me {
+        color: white;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        letter-spacing: 3px;
+
+        text-shadow:
+          0 0 10px white,
+          0 0 20px #ff4db8,
+          0 0 40px #b517ff;
+
+        animation: bounce 1s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* Hand Heart */
+      .hand-heart {
+        font-size: 180px;
+        line-height: 1;
+        cursor: pointer;
+        user-select: none;
+
+        animation: pulse 1.5s infinite;
+
+        filter: drop-shadow(0 0 10px #ff4db8) drop-shadow(0 0 25px #b517ff)
+          drop-shadow(0 0 50px #ff1744);
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      /* Floating Hearts */
+      .heart {
+        position: absolute;
+        pointer-events: none;
+        animation: floatUp linear forwards;
+      }
+
+      @keyframes floatUp {
+        0% {
+          opacity: 0;
+          transform: translateY(0) scale(0.5) rotate(0deg);
+        }
+
+        10% {
+          opacity: 1;
+        }
+
+        100% {
+          opacity: 0;
+          transform: translateY(-1000px) translateX(var(--moveX)) scale(2)
+            rotate(360deg);
+        }
+      }
+
+      /* Burst Hearts */
+      .burst-heart {
+        position: absolute;
+        pointer-events: none;
+        animation: burst 1.5s forwards;
+      }
+
+      @keyframes burst {
+        from {
+          opacity: 1;
+          transform: translate(0, 0) scale(0.5);
+        }
+
+        to {
+          opacity: 0;
+          transform: translate(calc(var(--x) * 350px), calc(var(--y) * 350px))
+            scale(2.5);
+        }
+      }
+
+      /* Sparkles */
+      .sparkle {
+        position: absolute;
+        color: white;
+        pointer-events: none;
+        animation: sparkleAnim 1.2s linear forwards;
+      }
+
+      @keyframes sparkleAnim {
+        from {
+          opacity: 1;
+          transform: scale(0.5);
+        }
+
+        to {
+          opacity: 0;
+          transform: translateY(-100px) scale(2);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="message">Happy 7k Stea ❤️</div>
+
+      <div class="click-me">✨ CLICK ME ✨</div>
+
+      <div class="hand-heart" id="heartButton">🫶</div>
+    </div>
+
+    <script>
+      const heartButton = document.getElementById("heartButton");
+
+      const hearts = ["💜", "💖", "💕", "💗", "❤️", "💘"];
+
+      function createFloatingHeart() {
+        const heart = document.createElement("div");
+
+        heart.className = "heart";
+
+        heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+
+        heart.style.left = Math.random() * window.innerWidth + "px";
+
+        heart.style.bottom = "-50px";
+
+        heart.style.fontSize = 20 + Math.random() * 40 + "px";
+
+        heart.style.setProperty("--moveX", Math.random() * 300 - 150 + "px");
+
+        heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 7000);
+      }
+
+      function createBurstHeart() {
+        const heart = document.createElement("div");
+
+        heart.className = "burst-heart";
+
+        heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+
+        heart.style.left = "50%";
+        heart.style.top = "55%";
+
+        const angle = Math.random() * Math.PI * 2;
+
+        heart.style.setProperty("--x", Math.cos(angle));
+
+        heart.style.setProperty("--y", Math.sin(angle));
+
+        heart.style.fontSize = 25 + Math.random() * 35 + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 1500);
+      }
+
+      function createSparkle() {
+        const sparkle = document.createElement("div");
+
+        sparkle.className = "sparkle";
+        sparkle.innerHTML = "✨";
+
+        sparkle.style.left =
+          window.innerWidth / 2 + (Math.random() * 300 - 150) + "px";
+
+        sparkle.style.top =
+          window.innerHeight / 2 + (Math.random() * 300 - 150) + "px";
+
+        sparkle.style.fontSize = 20 + Math.random() * 20 + "px";
+
+        document.body.appendChild(sparkle);
+
+        setTimeout(() => {
+          sparkle.remove();
+        }, 1200);
+      }
+
+      heartButton.addEventListener("click", () => {
+        for (let i = 0; i < 100; i++) {
+          createBurstHeart();
+        }
+
+        for (let i = 0; i < 60; i++) {
+          setTimeout(() => {
+            createFloatingHeart();
+          }, i * 50);
+        }
+
+        for (let i = 0; i < 25; i++) {
+          setTimeout(() => {
+            createSparkle();
+          }, i * 40);
+        }
+      });
+
+      /* Continuous TikTok Live Hearts */
+      setInterval(() => {
+        createFloatingHeart();
+      }, 250);
+    </script>
+  </body>
+</html>
